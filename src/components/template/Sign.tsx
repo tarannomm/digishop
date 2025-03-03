@@ -4,41 +4,36 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { IoEyeOutline } from "react-icons/io5";
 import { FaRegEyeSlash } from "react-icons/fa";
-import api from "../../services/api";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import { FormInputs } from "../../types/AppTypes";
- 
+import { createUser, loginUser } from "../../services/requests";
+import { useCookies } from "react-cookie";
+
 const Sign: React.FC = () => {
   const { pathname } = useLocation();
   const navigate=useNavigate();
   const [showPass, setShowPass] = useState(false);
+  const [setCookie] = useCookies(["AuthToken"]);
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
+    reset
   } = useForm<FormInputs>();
-
-  const createUser = async (formData:FormInputs) => {
-    const { data } = await api.post("/api/auth/localSignup",formData);
-    return data;
-  };
-  const loginUser = async (formData:FormInputs) => {
-    const { data } = await api.post("/api/auth/localSignin", formData);
-    return data;
-  };
-
   const mutation = useMutation({
         mutationFn: (data: FormInputs) => pathname === "/signup" ? createUser(data) : loginUser(data),
     onSuccess: (data) => {
         pathname==="/signup"?
     ( toast.success("حساب کاربری شما با موفقیت ایجاد شد!"),
+    reset(),
      navigate("/login"))
       :
      (
       toast.success("به دیجی شاپ خوش آمدید"),
-        navigate("/")
+       reset(),
+      navigate("/"), 
+       setCookie("AuthToken",data.access_token, { expires: new Date(Date.now() + 86400e3) })
      ) 
       },
       onError: (error: any) => {
@@ -79,6 +74,7 @@ const Sign: React.FC = () => {
                   variant="bordered"
                   type={field.name === "password" ? (showPass ? "text" : "password") : field.type}
                   className="rounded-md"
+                  autoComplete="off"
                   {...register(field.name as keyof FormInputs, {
                     required: `${field.title} الزامی است`,
                     minLength: field.name === "password" ? { value: 6, message: "رمز عبور حداقل ۶ کاراکتر باشد" } : undefined,
@@ -105,6 +101,7 @@ const Sign: React.FC = () => {
                   variant="bordered"
                   type={field.name === "password" ? (showPass ? "text" : "password") : field.type}
                   className="rounded-md"
+                  autoComplete="off"
                   {...register(field.name as keyof FormInputs, {
                     required: `${field.title} الزامی است`,
                     minLength: field.name === "password" ? { value: 6, message: "رمز عبور حداقل ۶ کاراکتر باشد" } : undefined,

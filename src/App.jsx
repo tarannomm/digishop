@@ -4,11 +4,13 @@ import "react-toastify/dist/ReactToastify.css";
 import {HeroUIProvider} from "@heroui/react";
 import AppRoutes from "./routes/AppRoutes";
 import Layout from "./components/layout/Layout";
+import { CookiesProvider } from "react-cookie";
 function App() {
   return (
     <div className="bg-lighten h-screen">
       <HeroUIProvider>
-        <Layout>
+        <CookiesProvider>
+          <Layout>
         <AppRoutes/>
         <ToastContainer
           position="bottom-right"
@@ -19,6 +21,8 @@ function App() {
           theme="colored"
         />
         </Layout>
+        </CookiesProvider>
+        
         </HeroUIProvider>
     </div>
   );
