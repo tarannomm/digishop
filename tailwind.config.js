@@ -15,8 +15,6 @@ export default {
         graybase:"#b39a81",
         dark:"#8c7053",
         darken:"#5e4f39",
-
-
       },
       boxShadow: {
         'custom-light': '0 2px 4px -2px rgba(16, 24, 40, 0.06)',

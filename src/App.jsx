@@ -7,7 +7,7 @@ import Layout from "./components/layout/Layout";
 import { CookiesProvider } from "react-cookie";
 function App() {
   return (
-    <div className="bg-lighten h-screen">
+    <div className="bg-lighten min-h-screen p-3">
       <HeroUIProvider>
         <CookiesProvider>
           <Layout>

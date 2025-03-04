@@ -26,8 +26,6 @@ export interface ProductType{
 }
 //drop down items and def value types
 export interface SelectProps{
-    defaultVal:string,
-     label:string,
      state: Set<string>;
      setState: Dispatch<SetStateAction<Set<string>>>;
     items:{
@@ -35,6 +33,26 @@ export interface SelectProps{
         key:string,
        
     }[]
+}
+
+//types of filter fields in product list 
+export interface filterType{
+    query?:string,
+    category?:string,
+    sort?:string,
+}
+
+//types of filter state and setter
+export interface filterprops{
+    state:filterType,
+    setState:Dispatch<SetStateAction<filterType>>;
+}
+
+//lottie wrapper component props
+export interface LottieProps {
+  animationType:string,
+  height?: number;
+  width?: number;
 }
 
 

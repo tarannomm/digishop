@@ -1,18 +1,34 @@
-import { Button, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger } from '@heroui/react';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import DropDownCostum from './dropDown';
+import { filterprops } from '../../types/AppTypes';
 
-const SortBox: React.FC = () => {
-  const [selectedKeys, setSelectedKeys] = useState<Set<string>>(new Set(["price"]));
-   const label= selectedKeys.has("price") ? "بیشترین قیمت" : "جدید ترین محصول";
+const SortBox: React.FC<filterprops>= ({state,setState}) => {
+  const [selectedKeys, setSelectedKeys] = useState<Set<string>>(new Set(["-----"]));
   const items=[
+    {title:"-----",key:""},
     {title:"بیشترین قیمت",key:"price"},
     {title:"جدید ترین محصول",key:"date"},
   ]
+
+  useEffect(()=>{
+    if(selectedKeys){
+        console.log(selectedKeys);
+        
+       const selected=items.filter(item=>item.title== Array.from(selectedKeys)[0]);
+       console.log(selected);
+       
+       setState({...state,sort:selected && selected[0].key})   
+    }
+
+  },[selectedKeys])
+
   return (
     <div className='box m-2 !p-[6px] !justify-end'>
       <span className='span'>مرتب سازی بر اساس :</span>
-       <DropDownCostum items={items} defaultVal='price' label={label} state={selectedKeys} setState={setSelectedKeys}/>
+      <div className='w-[130px]'>
+      <DropDownCostum items={items}  state={selectedKeys} setState={setSelectedKeys}/>
+
+      </div>
     </div> 
   );
 };

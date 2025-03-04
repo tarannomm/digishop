@@ -1,4 +1,4 @@
-import { FormInputs } from "../types/AppTypes";
+import { filterType, FormInputs } from "../types/AppTypes";
 import api from "./api";
 
 //signup
@@ -12,8 +12,15 @@ export const loginUser = async (formData:FormInputs) => {
     return data;
   };
 //products list 
-export const productsReq=async()=>{
-    const {data}=await api.get("/api/products");
+export const productsReq=async(filters:filterType)=>{
+    const validFilters = Object.fromEntries(
+        Object.entries(filters).filter(([_, value]) => value !== "")
+    );
+    const {data}=await api.get("/api/products",
+        {
+        params:validFilters
+      
+        });
     return data
 }
 //categories of product

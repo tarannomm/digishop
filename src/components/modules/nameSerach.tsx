@@ -1,12 +1,29 @@
-import { Input } from '@heroui/react'
-import React from 'react'
+import { Button, Input } from '@heroui/react'
+import React, { useEffect } from 'react'
+import { IoSearch } from 'react-icons/io5'
+import { filterprops } from '../../types/AppTypes'
+import { useForm } from 'react-hook-form'
 
-function NameSerach() {
+const NameSerach:React.FC<filterprops>=({state,setState})=>
+    {
+    const form =useForm();
+    const {register,handleSubmit,reset}=form;
+    const searchHandler=(data)=>{
+        console.log(data);
+        setState({...state,query:data.searchname});
+    }
+
   return (
-    <div className='box !p-2  flex-col w-full'>
-        <div className=' text-dark rounded-xl text-tiny'>فیلتر بر اساس اسم</div>
-        <Input type="text" placeholder='نام محصول'/>
-      
+    <div className='box m-2 !p-3 !items-start   flex-col w-full'>
+        <span className='span mb-3'>جستجو بر اساس نام محصول :</span>
+        <Input 
+        type="text" 
+        placeholder='نام محصول'
+        className='nameSearch' 
+        {...register("searchname")}
+        endContent={
+        <IoSearch onClick={handleSubmit(searchHandler)}  className='text-2xl text-orangeLight transition cursor-pointer '/>}
+        />
     </div>
   )
 }
