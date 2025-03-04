@@ -2,19 +2,20 @@ import React from 'react';
 import Lottie from 'react-lottie';
 import empty from "./emptyshop1.json";
 import search from './emptyshop2.json';
+import notfound from "./notFound.json"
 import { LottieProps } from '../../types/AppTypes';
-import { animateMini } from 'framer-motion';
+ 
  
 
 
 
-const LottieWrapper: React.FC<LottieProps> = ({ animationType, height = 400, width = 400 }) => {
+const LottieWrapper: React.FC<LottieProps> = ({ animationType}) => {
   
 
   const options = {
     loop: true,
     autoplay: true,
-    animationData: animationType!=="search"?empty:search,
+    animationData: animationType=="search"?search:(animationType=="notfound"?notfound:empty),
     rendererSettings: {
       preserveAspectRatio: 'xMidYMid slice',
     },
