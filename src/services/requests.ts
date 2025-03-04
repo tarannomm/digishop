@@ -23,6 +23,14 @@ export const productsReq=async(filters:filterType)=>{
         });
     return data
 }
+
+//fetching one-product with its id
+export const OneproductReq=async(id:string)=>{
+ 
+    const {data}=await api.get(`/api/products/${id}`);
+    return data
+}
+
 //categories of product
 export const availableCategories=async()=>{
     const {data}=await api.get("/api/categories");

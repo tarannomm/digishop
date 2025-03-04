@@ -23,7 +23,7 @@ const SortBox: React.FC<filterprops>= ({state,setState}) => {
   },[selectedKeys])
 
   return (
-    <div className='box m-2 !p-[6px] !justify-end'>
+    <div className='box my-2 !p-[6px] !justify-end'>
       <span className='span'>مرتب سازی بر اساس :</span>
       <div className='w-[130px]'>
       <DropDownCostum items={items}  state={selectedKeys} setState={setSelectedKeys}/>

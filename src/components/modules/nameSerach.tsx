@@ -14,7 +14,7 @@ const NameSerach:React.FC<filterprops>=({state,setState})=>
     }
 
   return (
-    <div className='box m-2 !p-3 !items-start   flex-col w-full'>
+    <div className='box my-2 !p-3 !items-start   flex-col w-full'>
         <span className='span mb-3'>جستجو بر اساس نام محصول :</span>
         <Input 
         type="text" 

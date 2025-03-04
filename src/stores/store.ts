@@ -9,28 +9,28 @@ interface product {
 }
  
 
-interface State {
-  shopItem:product[]
+export interface State {
+  cartItem:product[]
 
 }
 
 const initialState: State = {
-  shopItem:[]
+  cartItem:[]
 };
 
  
 const todoSlice = createSlice({
-    name: 'todo',
+    name: 'cart',
     initialState,
     reducers: {
-      addToShop(state, action: PayloadAction<product>) {
-        state.shopItem.push(action.payload);
+      addToCart(state, action: PayloadAction<product>) {
+        state.cartItem.push(action.payload);
       }
     },
   });
 
 const { actions, reducer } = todoSlice;
-const {addToShop} = actions;
+const {addToCart} = actions;
 
 const persistConfig = {
   key: 'root',
@@ -50,4 +50,4 @@ const store = configureStore({
  
 const persistor = persistStore(store);
 
-export { store, persistor,addToShop}; 
+export { store, persistor,addToCart}; 
