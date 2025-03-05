@@ -54,6 +54,12 @@ export interface LottieProps {
   height?: number;
   width?: number;
 }
+export interface lottieDesignProps{
+animation:string,
+text:string,
+linkText:string,
+link:string
+}
 
 
   

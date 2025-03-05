@@ -5,13 +5,8 @@ import search from './emptyshop2.json';
 import notfound from "./notFound.json"
 import { LottieProps } from '../../types/AppTypes';
  
- 
-
-
-
 const LottieWrapper: React.FC<LottieProps> = ({ animationType}) => {
-  
-
+ 
   const options = {
     loop: true,
     autoplay: true,

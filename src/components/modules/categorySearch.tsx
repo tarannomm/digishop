@@ -22,7 +22,7 @@ const CategorySearch:React.FC<filterprops>=({state,setState})=> {
     },[selectedKeys])
    
    return (
-     <div className='box my-2 !p-3 !items-start flex-col w-full'>
+     <div className='box m-2 !p-3 !items-start flex-col w-full'>
        <span className='span mb-3'>فیلتر  محصولات با دسته بندی :</span>
        {isLoading?
        <Spinner color='warning' className='w-full'/>:

@@ -27,11 +27,11 @@ const ProductDetails:React.FC = () => {
          <Image
           alt="Card background"
           className=" rounded-xl w-full sm:w-[300px] lg:w-[400px]"
-          src={"https://heroui.com/images/hero-card-complete.jpeg"}
+          src={`https://apidigishop.narinsoft.ir/${data.image}`}
         />
-        <div className='w-full sm:w-[60%] mx-3'>
+        <div className='w-full sm:w-[60%] sm:mx-3'>
         <h1 className='text-orangeLight font-bold m-2 lg:text-xl'>{data.title}</h1>
-        <div className='border-2 border-dashed border-light rounded-lg m-2 p-2 '>
+        <div className='border-2 border-dashed border-light rounded-lg md:m-2 p-2 '>
             <div className='bg-gray-100 rounded-lg w-fit m-2 p-[5px] text-mid'>
                 دسته بندی :
                 <span className='font-bold text-darken m-2'>{data.category.title}</span>
@@ -42,9 +42,9 @@ const ProductDetails:React.FC = () => {
             </span>
             <span className='text-green-700 font-bold  text-sm lg:text-lg'>{data.price.toLocaleString()} تومان</span>   
             </div>
-            <div className='flex items-end'>
-              <AddShop/>  
-              <Link className="w-[200px] h-[20px]  !text-orangeLight text-center !text-[12px]">بازگشت به فروشگاه</Link>
+            <div className='flex items-end mt-12 lg:mt-[90px] mb-2 '>
+              <AddShop product={data}/>  
+              <Link to="/" className="w-[200px] h-[20px]  !text-orangeLight text-center !text-[12px] pb-6  hover:font-bold">بازگشت به فروشگاه</Link>
             </div>
         </div> 
         </div>

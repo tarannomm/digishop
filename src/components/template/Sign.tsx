@@ -57,7 +57,7 @@ const Sign: React.FC = () => {
     { id: 5, title: "رمز عبور", name: "password", type: "password" },
   ];
   return (
-    <div className="flex flex-col h-screen items-center justify-center">
+    <div className="flex flex-col mt-14 items-center justify-center">
       <h1 className="text-lg lg:text-2xl font-bold text-darken my-3">
         {pathname === "/signup" ? "ایجاد حساب کاربری" : "ورود"}
       </h1>
@@ -120,7 +120,7 @@ const Sign: React.FC = () => {
               </div>
             ))}
 
-        <Button variant="flat" className="btn mt-4 w-full" type="submit">
+        <Button variant="flat" className="btn mt-12 mb-4 w-full" type="submit">
           {pathname === "/signup" ? "عضویت" : "ورود"}
         </Button>
 

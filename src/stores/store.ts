@@ -3,9 +3,10 @@ import storage from 'redux-persist/lib/storage';
 import { configureStore, createSlice, PayloadAction } from '@reduxjs/toolkit'; 
 
 interface product {
-  id: number;
+  _id: number;
   title:string;
   price:number
+  count?:number
 }
  
 
@@ -19,18 +20,34 @@ const initialState: State = {
 };
 
  
-const todoSlice = createSlice({
+const cartSlice = createSlice({
     name: 'cart',
     initialState,
     reducers: {
       addToCart(state, action: PayloadAction<product>) {
         state.cartItem.push(action.payload);
-      }
+      },
+      removeItem(state, action: PayloadAction<product>) {
+        state.cartItem = state.cartItem.filter(item => item._id !== action.payload._id);
+         
+      },
+      updateItem(state, action: PayloadAction<{ id: number; count: number }>) {
+        console.log("hjjjjjjjjjj");
+        
+        const { id, count } = action.payload;
+        const item = state.cartItem.find(item => item._id === id);
+        if (item) {
+          item.count=count;
+        }
+      },
+      clearCart: (state) => {
+        state.cartItem = [];
+      },
     },
   });
 
-const { actions, reducer } = todoSlice;
-const {addToCart} = actions;
+const { actions, reducer } = cartSlice;
+const {addToCart,clearCart,removeItem,updateItem} = actions;
 
 const persistConfig = {
   key: 'root',
@@ -50,4 +67,4 @@ const store = configureStore({
  
 const persistor = persistStore(store);
 
-export { store, persistor,addToCart}; 
+export { store, persistor,addToCart,clearCart,removeItem,updateItem}; 

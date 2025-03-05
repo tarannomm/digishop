@@ -22,13 +22,13 @@ const ProductCard: React.FC<any> = ({info}) => {
         <Image
           alt="Card background"
           className="object-cover rounded-xl w-full z-0"
-          src={"https://heroui.com/images/hero-card-complete.jpeg"}
+          src={`https://apidigishop.narinsoft.ir/${image}`}
         />
         <Tooltip content={favorite?"حذف از علاقه مندی ها":"افزودن به علاقه‌مندی‌ها"} placement="left" color="foreground">
           <button className="absolute top-3 right-3 p-2  transition z-10" onClick={favoriteHandler}>
             {favorite?
-            <FaHeart className="text-white hover:text-red-600 text-lg"  />:
-            <FaRegHeart className="text-white hover:text-red-600 text-lg" />
+            <FaHeart className="text-mid hover:text-red-600 text-lg"  />:
+            <FaRegHeart className="text-light hover:text-red-600 text-lg" />
 
             }
           </button>
@@ -39,7 +39,10 @@ const ProductCard: React.FC<any> = ({info}) => {
       <CardBody className="overflow-visible py-2 items-center">
         <p className="font-bold text-darken text-lg">{title}</p>
         <small className="text-orangedark font-bold mt-3">{price.toLocaleString()} تومان</small>
-        <AddShop product={info}/>
+        <div className="mt-10 mb-2 w-full ">
+          <AddShop product={info}/>
+        </div>
+        
       </CardBody>
     </Card>
    </div>
