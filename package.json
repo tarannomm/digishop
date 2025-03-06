@@ -1,5 +1,5 @@
 {
-  "name": "todolist",
+  "name": "digishop",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -30,7 +30,8 @@
     "react-toastify": "^10.0.6",
     "recharts": "^2.13.0",
     "redux": "^5.0.1",
-    "redux-persist": "^6.0.0"
+    "redux-persist": "^6.0.0",
+    "swiper": "^11.2.5"
   },
   "devDependencies": {
     "@eslint/js": "^9.13.0",

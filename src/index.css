@@ -1,85 +1,85 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import "@fontsource/amita";
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,600;1,400;1,600&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;500;600;700&display=swap');
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
-
 
 ::-webkit-scrollbar {
-    width: 10px !important;
-    height: 10px;
+  width: 10px !important;
+  height: 10px;
 }
 
 ::-webkit-scrollbar-track {
-    border-radius: 1rem;
+  border-radius: 1rem;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #bd9c78;
-    border-radius: 1rem;
+  background: #bd9c78;
+  border-radius: 1rem;
 }
 @font-face {
-    font-family: 'iranSans';
-    src: url('/src//fonts/IRANSans.ttf') format('truetype');
-  }
-
-*{
-    font-family: 'iranSans', sans-serif;
-  }
-
- .nameSearch > div > div {
-    border: 2px solid rgb(218, 216, 216);
-    background-color: white;
-
+  font-family: "iranSans";
+  src: url("./assets//fonts/IRANSans.ttf") format("truetype");
 }
-.nameSearch > div > div:hover{
-    background-color:transparent
+
+* {
+  font-family: "iranSans", sans-serif;
 }
-.snipper >div{
-    width:9% !important;
-    min-width: 70px;
-  i{
-    width:25% !important;
-    height:40% !important;
+
+.nameSearch > div > div {
+  border: 2px solid rgb(218, 216, 216);
+  background-color: white;
+}
+.nameSearch > div > div:hover {
+  background-color: transparent;
+}
+.snipper > div {
+  width: 9% !important;
+  min-width: 70px;
+  i {
+    width: 25% !important;
+    height: 40% !important;
     background-color: rgb(204, 119, 8);
-}  
-} 
-tr{
-    border-bottom: 1px solid rgb(219, 207, 181);
+  }
+}
+tr {
+  border-bottom: 1px solid rgb(219, 207, 181);
+}
+th {
+  text-align: center !important;
+}
+nav header {
+  width: 100% !important;
 }
 
-.btn{
-    @apply bg-graybase w-full  text-lighten rounded-3xl  lg:text-xl
-
+.btn {
+  @apply bg-graybase w-full  text-lighten rounded-3xl  lg:text-xl;
 }
-.smallbtn{
-    @apply bg-graybase !p-0  text-lighten rounded-3xl  lg:text-xl
-
+.smallbtn {
+  @apply bg-graybase !p-0  text-lighten rounded-3xl  lg:text-xl;
 }
-.icon{
-    @apply text-dark text-lg
+.icon {
+  @apply text-dark text-lg;
 }
-.span{
-    @apply text-dark  text-[12px] lg:text-sm mx-2
+.span {
+  @apply text-dark  text-[12px] lg:text-sm mx-2;
 }
-.errorSpan{
-    @apply text-orangedark text-[10px] p-1 pb-0
+.errorSpan {
+  @apply text-orangedark text-[10px] p-1 pb-0;
 }
-.links{
-    @apply text-orangeLight font-bold text-sm lg:text-base
+.links {
+  @apply text-orangeLight font-bold text-sm lg:text-base;
 }
-.box{
-    @apply rounded-2xl shadow-sm   flex justify-between items-center bg-white
+.box {
+  @apply rounded-2xl shadow-sm   flex justify-between items-center bg-white;
 }
-.titleText{
-    @apply text-mid font-bold lg:text-xl p-3
+.titleText {
+  @apply text-mid font-bold lg:text-xl p-3;
 }
-.pText{
-    @apply text-dark font-bold text-sm lg:text-base ml-2
+.pText {
+  @apply text-dark font-bold text-sm lg:text-base ml-2;
 }
-.describText{
-    @apply text-gray-600 text-sm 
+.describText {
+  @apply text-gray-600 text-sm  mt-1;
 }
-
+.formContainer {
+  @apply bg-[#ffffff] p-[29px] px-[25px] rounded-[10px];
+}
