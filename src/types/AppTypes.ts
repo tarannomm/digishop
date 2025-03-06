@@ -60,3 +60,16 @@ export interface lottieDesignProps {
   linkText: string;
   link: string;
 }
+//types of address modal
+export interface AddressModalProps {
+  isOpen: boolean;
+  onOpenChange: (open: boolean) => void;
+  onSubmit: (data: AddressFormValues) => void;
+}
+
+export interface AddressFormValues {
+  province?: string;
+  city?: string;
+  postalCode?: string;
+  detail?: string;
+}

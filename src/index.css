@@ -83,3 +83,9 @@ nav header {
 .formContainer {
   @apply bg-[#ffffff] p-[29px] px-[25px] rounded-[10px];
 }
+.addressLabel{
+  @apply my-3 block text-sm lg:text-base font-medium
+}
+.addressInput{
+  @apply !border-1 !border-mid !rounded-lg !bg-white !p-4;
+}

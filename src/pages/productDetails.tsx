@@ -46,7 +46,7 @@ const ProductDetails: React.FC = () => {
                       قیمت :
                     </span>
                     <span className="text-green-700 font-bold  text-sm lg:text-lg">
-                      {data.price.toLocaleString()} تومان
+                      {data.price.toLocaleString()} ریال
                     </span>
                   </div>
                   <div className="flex flex-col md:flex-row items-center md:items-end md:justify-between mt-12 lg:mt-[90px] mb-2 ">

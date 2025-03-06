@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Button } from "@heroui/react";
 import CartTable from "../components/modules/CartTable";
 import LottieDesign from "../utility/lotties/LottieDesign";
@@ -8,13 +8,18 @@ import { useCookies } from "react-cookie";
 import { useMutation } from "@tanstack/react-query";
 import { createOrders } from "../services/requests";
 import { toast } from "react-toastify";
-import { ProductType } from "../types/AppTypes";
+import { clearCart } from "../redux/store";
+import AddressModal from "../components/modules/AddressModal";
+import { AddressFormValues } from "../types/AppTypes";
 
 const ShopCart: React.FC = () => {
   const [cookies, setCookie] = useCookies(["AuthToken"]);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const cartItems = useSelector((state: any) => state.myArray.cartItem);
   const [totalPrice, setTotalPrice] = useState<number>(0);
+  const [modal, setModal] = useState<boolean>(false);
+  const [address, setAddress] = useState<AddressFormValues>({});
 
   useEffect(() => {
     const total = cartItems.reduce((acc: number, item: any) => {
@@ -24,30 +29,33 @@ const ShopCart: React.FC = () => {
     setTotalPrice(total);
   }, [cartItems]);
 
-const mutation = useMutation<void, Error>({
-  mutationFn: async () => {
-    if (!cookies.AuthToken) {
-      navigate("/login");
-      return; 
-    }
-    return await createOrders(cartItems, cookies.AuthToken);
-  },
+  const mutation = useMutation<void, Error>({
+    mutationFn: async () => {
+      if (!cookies.AuthToken) {
+        navigate("/login");
+        return;
+      }
+      return await createOrders(cartItems, address, cookies.AuthToken);
+    },
 
-  onSuccess: () => {
-    toast.success("سفارش با موفقیت ثبت شد!");
-  },
+    onSuccess: () => {
+      toast.success("سفارش با موفقیت ثبت شد!");
+      dispatch(clearCart());
+      navigate("/");
+    },
 
-  onError: (error) => {
-    console.log(error);
-    
-    // toast.error(error.response?.data?.message || "مشکلی پیش آمد!");
-  },
-});
+    onError: (error) => {
+      console.log(error);
+      toast.error("مشکلی پیش آمد!");
+    },
+  });
 
-
-  const orderHandler = () => {
-    mutation.mutate(cartItems);
+  const handleAddressSubmit = (data) => {
+    setAddress(data); // ذخیره آدرس دریافت‌شده
+    setModal(false); // بستن مدال
+    mutation.mutate(); // ارسال اطلاعات به سرور
   };
+
   return (
     <div className="box p-5 m-5 flex-col lg:flex-row">
       {cartItems.length > 0 ? (
@@ -64,16 +72,13 @@ const mutation = useMutation<void, Error>({
                   </span>
                 </div>
                 <hr />
-                <>
-                  <p className="pText text-start mb-2">حمل و نقل :</p>
-                  <span className="describText ">
-                    ارسال با پست پیشتاز تحویل کالا 3-4 روز کاری بعد از ثبت سفارش
-                    <i className="block text-orange-800 py-2 ">
-                      {" "}
-                      هزینه ارسال : 490,000 ریال
-                    </i>
-                  </span>
-                </>
+                <p className="pText text-start mb-2">حمل و نقل :</p>
+                <span className="describText ">
+                  ارسال با پست پیشتاز تحویل کالا 3-4 روز کاری بعد از ثبت سفارش
+                  <i className="block text-orange-800 py-2 ">
+                    هزینه ارسال : 490,000 ریال
+                  </i>
+                </span>
                 <hr />
                 <div className="flex">
                   <p className="pText">مجموع :</p>
@@ -81,7 +86,10 @@ const mutation = useMutation<void, Error>({
                     {(totalPrice + 490000).toLocaleString()} ریال
                   </span>
                 </div>
-                <Button className="btn !mt-10 !text-sm" onPress={orderHandler}>
+                <Button
+                  className="btn !mt-10 !text-sm"
+                  onPress={() => setModal(true)}
+                >
                   اقدام به پرداخت
                 </Button>
               </div>
@@ -98,14 +106,21 @@ const mutation = useMutation<void, Error>({
         <div className=" w-full">
           <LottieDesign
             text="سبد خرید شما خالی میباشد !"
-            link="/"
+            link="/shop"
             animation="shopcart"
             linkText="هدایت به فروشگاه"
           />
         </div>
       )}
+
+      <AddressModal
+        isOpen={modal}
+        onOpenChange={setModal}
+        onSubmit={handleAddressSubmit}
+      />
     </div>
   );
 };
+
 
 export default ShopCart;

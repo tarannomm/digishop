@@ -1,4 +1,9 @@
-import { filterType, FormInputs } from "../types/AppTypes";
+import {
+  AddressFormValues,
+  filterType,
+  FormInputs,
+  ProductType,
+} from "../types/AppTypes";
 import api from "./api";
 
 //signup
@@ -35,19 +40,22 @@ export const availableCategories = async () => {
 };
 
 //create orders
-export const createOrders = async (product: any, token: string) => {
+export const createOrders = async (
+  product: ProductType[],
+  address: AddressFormValues,
+  token: string
+) => {
+  const slectedproduct = product.map((item: any) => ({
+    productId: item._id,
+    selectedQuantity: item.count,
+  }));
   console.log(product);
 
   const { data } = await api.post(
     "/api/orders/create",
     {
-      address: {
-        province: "string",
-        city: "string",
-        postalCode: "string",
-        detail: "string",
-      },
-      products: [product],
+      address,
+      products: slectedproduct,
     },
     {
       headers: {
