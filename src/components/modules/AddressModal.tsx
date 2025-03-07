@@ -13,6 +13,7 @@ import { AddressFormValues, AddressModalProps } from "../../types/AppTypes";
 
 const AddressModal: React.FC<AddressModalProps> = ({
   isOpen,
+  isPending,
   onOpenChange,
   onSubmit,
 }) => {
@@ -109,6 +110,7 @@ const AddressModal: React.FC<AddressModalProps> = ({
                 className="btn !lg:text-base"
                 color="primary"
                 type="submit"
+                isLoading={isPending}
               >
                 تایید و ثبت نهایی خرید
               </Button>

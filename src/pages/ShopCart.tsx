@@ -91,6 +91,7 @@ const ShopCart: React.FC = () => {
       behavior: "smooth",
     });
   }, []);
+
   return (
     <div className="box p-5 m-5 flex-col lg:flex-row">
       {cartItems.length > 0 ? (
@@ -149,6 +150,7 @@ const ShopCart: React.FC = () => {
         isOpen={modal}
         onOpenChange={setModal}
         onSubmit={handleAddressSubmit}
+        isPending={mutation.isPending}
       />
     </div>
   );
