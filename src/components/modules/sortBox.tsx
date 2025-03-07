@@ -14,13 +14,9 @@ const SortBox: React.FC<filterprops> = ({ state, setState }) => {
 
   useEffect(() => {
     if (selectedKeys) {
-      console.log(selectedKeys);
-
       const selected = items.filter(
         (item) => item.title == Array.from(selectedKeys)[0]
       );
-      console.log(selected);
-
       setState({ ...state, sort: selected && selected[0].key });
     }
   }, [selectedKeys]);

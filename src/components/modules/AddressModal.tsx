@@ -112,7 +112,8 @@ const AddressModal: React.FC<AddressModalProps> = ({
                 type="submit"
                 isLoading={isPending}
               >
-                تایید و ثبت نهایی خرید
+                {isPending?" در حال پردازش ...":
+               " تایید و ثبت نهایی خرید"}
               </Button>
               <Button
                 className="w-[100%]"

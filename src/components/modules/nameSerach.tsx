@@ -8,7 +8,6 @@ const NameSerach: React.FC<filterprops> = ({ state, setState }) => {
   const form = useForm();
   const { register, handleSubmit, reset } = form;
   const searchHandler = (data) => {
-    console.log(data);
     setState({ ...state, query: data.searchname });
   };
 

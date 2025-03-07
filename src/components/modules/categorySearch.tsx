@@ -16,7 +16,6 @@ const CategorySearch: React.FC<filterprops> = ({ state, setState }) => {
   const categoriesWithAll = data ? [{ _id: "", title: "همه" }, ...data] : [];
 
   useEffect(() => {
-    console.log(data);
     if (selectedKeys) {
       const category = categoriesWithAll?.find(
         (item) => item.title === Array.from(selectedKeys)[0]

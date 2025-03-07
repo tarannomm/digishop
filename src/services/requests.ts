@@ -6,62 +6,70 @@ import {
 } from "../types/AppTypes";
 import api from "./api";
 
-//signup
+const apiRequest = async (requestFunction: Function, params: any) => {
+  try {
+    const { data } = await requestFunction(params);
+    return data;
+  } catch (error) {
+    console.error("API Request Error:", error);
+    throw error; 
+  }
+};
+
+// Signup
 export const createUser = async (formData: FormInputs) => {
-  const { data } = await api.post("/api/auth/localSignup", formData);
-  return data;
+  return await apiRequest((params) => api.post("/api/auth/localSignup", params), formData);
 };
-//login
+
+// Login
 export const loginUser = async (formData: FormInputs) => {
-  const { data } = await api.post("/api/auth/localSignin", formData);
-  return data;
+  return await apiRequest((params) => api.post("/api/auth/localSignin", params), formData);
 };
-//products list
+
+// Products list with filters
 export const productsReq = async (filters: filterType) => {
   const validFilters = Object.fromEntries(
     Object.entries(filters).filter(([_, value]) => value !== "")
   );
-  const { data } = await api.get("/api/products", {
-    params: validFilters,
-  });
-  return data;
+
+  return await apiRequest((params) => api.get("/api/products", { params }), validFilters);
 };
 
-//fetching one-product with its id
+// Fetch single product by id
 export const OneproductReq = async (id: string) => {
-  const { data } = await api.get(`/api/products/${id}`);
-  return data;
+  return await apiRequest(() => api.get(`/api/products/${id}`), {});
 };
 
-//categories of product
+// Categories of products
 export const availableCategories = async () => {
-  const { data } = await api.get("/api/categories");
-  return data;
+  return await apiRequest(() => api.get("/api/categories"), {});
 };
 
-//create orders
+// Create order
 export const createOrders = async (
-  product: ProductType[],
+  products: any[], 
   address: AddressFormValues,
   token: string
 ) => {
-  const slectedproduct = product.map((item: any) => ({
+  const selectedProducts = products.map((item: any) => ({
     productId: item._id,
     selectedQuantity: item.count,
   }));
-  console.log(product);
 
-  const { data } = await api.post(
-    "/api/orders/create",
-    {
-      address,
-      products: slectedproduct,
-    },
-    {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    }
+  return await apiRequest(
+    (params) =>
+      api.post(
+        "/api/orders/create",
+        {
+          address,
+          products: selectedProducts,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      ),
+    {}
   );
-  return data;
 };

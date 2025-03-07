@@ -14,7 +14,6 @@ export default function OrderConfirmation() {
   const [showDetails, setShowDetails] = useState(false);
   const navigate = useNavigate();
   const orderItems = useSelector((state: any) => state.myArray.orderItem);
-
   return (
     <div className="mt-5 flex flex-col items-center justify-center p-4">
       <div className="w-full max-w-2xl bg-white rounded-lg shadow-lg overflow-hidden">

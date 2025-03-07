@@ -44,7 +44,7 @@ const ShopCart: React.FC = () => {
 
       toast.success("سفارش با موفقیت ثبت شد!", {
         position: "top-right",
-        autoClose: 1200,
+        autoClose: 2000,
         hideProgressBar: false,
         closeOnClick: false,
         pauseOnHover: true,
@@ -62,7 +62,7 @@ const ShopCart: React.FC = () => {
       console.log(error);
       toast.error("مشکلی پیش آمد!", {
         position: "top-right",
-        autoClose: 1200,
+        autoClose: 2000,
         hideProgressBar: false,
         closeOnClick: false,
         pauseOnHover: true,

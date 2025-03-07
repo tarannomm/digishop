@@ -31,7 +31,7 @@ const Sign: React.FC = () => {
       pathname === "/signup"
         ? (toast.success("حساب کاربری شما با موفقیت ایجاد شد!", {
             position: "top-right",
-            autoClose: 1200,
+            autoClose: 2000,
             hideProgressBar: false,
             closeOnClick: false,
             pauseOnHover: true,
@@ -43,7 +43,7 @@ const Sign: React.FC = () => {
           navigate("/login"))
         : (toast.success("به دیجی شاپ خوش آمدید", {
             position: "top-right",
-            autoClose: 1200,
+            autoClose: 2000,
             hideProgressBar: false,
             closeOnClick: false,
             pauseOnHover: true,
@@ -63,7 +63,7 @@ const Sign: React.FC = () => {
     onError: (error: any) => {
       toast.error(error.response?.data?.message || "مشکلی پیش آمد!", {
         position: "top-right",
-        autoClose: 1200,
+        autoClose: 2000,
         hideProgressBar: false,
         closeOnClick: false,
         pauseOnHover: true,
@@ -222,6 +222,7 @@ const Sign: React.FC = () => {
             variant="flat"
             className="btn mt-12 mb-4 w-full"
             type="submit"
+            isLoading={mutation.isPending}
           >
             {pathname === "/signup" ? "عضویت" : "ورود"}
           </Button>
