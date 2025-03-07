@@ -16,8 +16,7 @@ export interface State {
 
 const initialState: State = {
   cartItem: [],
-  orderItem:[]
-
+  orderItem: [],
 };
 
 const cartSlice = createSlice({
@@ -49,7 +48,7 @@ const cartSlice = createSlice({
 });
 
 const { actions, reducer } = cartSlice;
-const { addToCart, clearCart, removeItem, updateItem ,addToOrder} = actions;
+const { addToCart, clearCart, removeItem, updateItem, addToOrder } = actions;
 
 const persistConfig = {
   key: "root",
@@ -66,4 +65,12 @@ const store = configureStore({
 
 const persistor = persistStore(store);
 
-export { store, persistor, addToCart, clearCart, removeItem, updateItem ,addToOrder };
+export {
+  store,
+  persistor,
+  addToCart,
+  clearCart,
+  removeItem,
+  updateItem,
+  addToOrder,
+};

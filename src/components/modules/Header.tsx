@@ -7,7 +7,7 @@ import {
   NavbarItem,
   NavbarMenuToggle,
   NavbarMenu,
-  NavbarMenuItem
+  NavbarMenuItem,
 } from "@heroui/react";
 import { CgProfile } from "react-icons/cg";
 import { FaBagShopping } from "react-icons/fa6";
@@ -75,7 +75,9 @@ export default function Header() {
             to="/login"
           >
             <CgProfile className="text-[36px] m-1" />
-            <span className="hidden lg:inline">{cookies.Username?cookies.Username :"ورود/ ثبتنام"}</span>
+            <span className="hidden lg:inline">
+              {cookies.Username ? cookies.Username : "ورود / ثبت‌نام"}
+            </span>
           </Link>
         </NavbarItem>
         <NavbarItem>

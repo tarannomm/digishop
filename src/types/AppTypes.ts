@@ -63,7 +63,7 @@ export interface lottieDesignProps {
 //types of address modal
 export interface AddressModalProps {
   isOpen: boolean;
-  isLoading: boolean;
+  isPending: boolean;
   onOpenChange: (open: boolean) => void;
   onSubmit: (data: AddressFormValues) => void;
 }

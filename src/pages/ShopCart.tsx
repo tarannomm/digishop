@@ -78,16 +78,13 @@ const ShopCart: React.FC = () => {
     mutation.mutate();
   };
 
-const orderHandler = () => {
-  if (cookies.AuthToken) {
-    setModal(true);
-  } else {
-    toast.error("برای ادامه باید وارد حساب کاربری شوید!");
-    setTimeout(() => {
+  const orderHandler = () => {
+    if (cookies.AuthToken) {
+      setModal(true);
+    } else {
       navigate("/login");
-    }, 2000); 
-  }
-};
+    }
+  };
 
   useEffect(() => {
     window.scrollTo({
@@ -154,7 +151,7 @@ const orderHandler = () => {
         isOpen={modal}
         onOpenChange={setModal}
         onSubmit={handleAddressSubmit}
-        isLoading={mutation.isPending}
+        isPending={mutation.isPending}
       />
     </div>
   );

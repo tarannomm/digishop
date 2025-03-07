@@ -14,7 +14,7 @@ const Sign: React.FC = () => {
   const { pathname } = useLocation();
   const navigate = useNavigate();
   const [showPass, setShowPass] = useState(false);
-  const [cookies, setCookie] = useCookies(["AuthToken","Username"]);
+  const [cookies, setCookie] = useCookies(["AuthToken", "Username"]);
 
   const {
     register,
@@ -30,35 +30,35 @@ const Sign: React.FC = () => {
     onSuccess: (data) => {
       pathname === "/signup"
         ? (toast.success("حساب کاربری شما با موفقیت ایجاد شد!", {
-          position: "top-right",
-          autoClose: 1200,
-          hideProgressBar: false,
-          closeOnClick: false,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-        }),
+            position: "top-right",
+            autoClose: 1200,
+            hideProgressBar: false,
+            closeOnClick: false,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          }),
           reset(),
           navigate("/login"))
         : (toast.success("به دیجی شاپ خوش آمدید", {
-          position: "top-right",
-          autoClose: 1200,
-          hideProgressBar: false,
-          closeOnClick: false,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-        }),
+            position: "top-right",
+            autoClose: 1200,
+            hideProgressBar: false,
+            closeOnClick: false,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          }),
           setCookie("AuthToken", data.access_token, {
             expires: new Date(Date.now() + 5 * 60 * 60 * 1000),
-          }) ,
+          }),
           setCookie("Username", watch("username"), {
-          expires: new Date(Date.now() + 5 * 60 * 60 * 1000),
-        }),
-        reset(),
-        navigate("/"))
+            expires: new Date(Date.now() + 5 * 60 * 60 * 1000),
+          }),
+          reset(),
+          navigate("/"));
     },
     onError: (error: any) => {
       toast.error(error.response?.data?.message || "مشکلی پیش آمد!", {
@@ -222,7 +222,6 @@ const Sign: React.FC = () => {
             variant="flat"
             className="btn mt-12 mb-4 w-full"
             type="submit"
-            isLoading={mutation.isPending}
           >
             {pathname === "/signup" ? "عضویت" : "ورود"}
           </Button>

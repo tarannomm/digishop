@@ -7,7 +7,6 @@ import Snippers from "../components/modules/snippers";
 import { FaMoneyBillWave, FaTruck } from "react-icons/fa";
 import AddShop from "../components/modules/AddShop";
 
-
 const ProductDetails: React.FC = () => {
   const { id } = useParams();
   const { data, isLoading } = useQuery({
