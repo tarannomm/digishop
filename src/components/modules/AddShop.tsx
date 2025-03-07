@@ -14,6 +14,10 @@ const AddShop: React.FC<any> = ({ product }) => {
   const dispatch = useDispatch();
   const cartItems = useSelector((state: any) => state.myArray.cartItem);
 
+  const existingItem = cartItems.find(
+    (item: any) => item._id === product._id
+  );
+  const [count, setCount] = useState<number>(existingItem?existingItem.count:1);
   const AddToCartHandler = () => {
     setCount(1);
     const updatedProduct = { ...product, count };
@@ -25,7 +29,6 @@ const AddShop: React.FC<any> = ({ product }) => {
     (item: any) => item?._id == product?._id
   );
 
-  const [count, setCount] = useState<number>(1);
   useEffect(() => {
     if (count > 0) {
       dispatch(updateItem({ id: product?._id, count }));

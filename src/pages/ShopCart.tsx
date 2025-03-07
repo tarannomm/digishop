@@ -17,6 +17,7 @@ const ShopCart: React.FC = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const cartItems = useSelector((state: any) => state.myArray.cartItem);
+  const orderItemss = useSelector((state: any) => state.myArray.orderItem);
   const [totalPrice, setTotalPrice] = useState<number>(0);
   const [modal, setModal] = useState<boolean>(false);
   const [address, setAddress] = useState<AddressFormValues>({});
@@ -49,6 +50,8 @@ const ShopCart: React.FC = () => {
         progress: undefined,
         theme: "light",
       });
+      console.log(orderItemss);
+      
       dispatch(clearCart());
       navigate("/");
     },
@@ -73,6 +76,15 @@ const ShopCart: React.FC = () => {
     setModal(false);
     mutation.mutate();
   };
+
+  const orderHandler = () => {
+    if (cookies.AuthToken) {
+      setModal(true);
+    } else {
+      navigate("/login");
+    }
+  };
+  
   useEffect(() => {
     window.scrollTo({
       top: 0,
@@ -109,10 +121,7 @@ const ShopCart: React.FC = () => {
                     {(totalPrice + 490000).toLocaleString()} ریال
                   </span>
                 </div>
-                <Button
-                  className="btn !mt-10 !text-sm"
-                  onPress={() => setModal(true)}
-                >
+                <Button className="btn !mt-10 !text-sm" onPress={orderHandler}>
                   اقدام به پرداخت
                 </Button>
               </div>

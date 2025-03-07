@@ -11,10 +11,13 @@ interface product {
 
 export interface State {
   cartItem: product[];
+  orderItem: product[];
 }
 
 const initialState: State = {
   cartItem: [],
+  orderItem:[]
+
 };
 
 const cartSlice = createSlice({
@@ -30,8 +33,6 @@ const cartSlice = createSlice({
       );
     },
     updateItem(state, action: PayloadAction<{ id: number; count: number }>) {
-      console.log("hjjjjjjjjjj");
-
       const { id, count } = action.payload;
       const item = state.cartItem.find((item) => item._id === id);
       if (item) {
@@ -39,6 +40,7 @@ const cartSlice = createSlice({
       }
     },
     clearCart: (state) => {
+      state.orderItem= [...state.cartItem];
       state.cartItem = [];
     },
   },

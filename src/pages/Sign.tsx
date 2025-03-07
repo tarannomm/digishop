@@ -14,12 +14,13 @@ const Sign: React.FC = () => {
   const { pathname } = useLocation();
   const navigate = useNavigate();
   const [showPass, setShowPass] = useState(false);
-  const [cookies, setCookie] = useCookies(["AuthToken"]);
+  const [cookies, setCookie] = useCookies(["AuthToken","Username"]);
 
   const {
     register,
     handleSubmit,
     formState: { errors },
+    watch,
     reset,
   } = useForm<FormInputs>();
 
@@ -53,6 +54,9 @@ const Sign: React.FC = () => {
           setCookie("AuthToken", data.access_token, {
             expires: new Date(Date.now() + 5 * 60 * 60 * 1000),
           })),
+        setCookie("Username", watch("username"), {
+          expires: new Date(Date.now() + 5 * 60 * 60 * 1000),
+        }); 
         reset(),
         navigate("/");
     },

@@ -15,10 +15,12 @@ import { CgProfile } from "react-icons/cg";
 import { FaBagShopping } from "react-icons/fa6";
 import { BsInfoCircleFill } from "react-icons/bs";
 import { Link, useLocation } from "react-router-dom";
+import { useCookies } from "react-cookie";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const location = useLocation();
+  const [cookies] = useCookies(["Username"]);
 
   const menuItems = [
     {
@@ -72,10 +74,10 @@ export default function Header() {
         <NavbarItem isActive>
           <Link
             className=" mx-5 flex items-center text-orangedark "
-            to="/login"
+            to={cookies.Username?"#":"/login"}
           >
             <CgProfile className="text-[36px] m-1" />
-            <span className="hidden lg:inline">ورود/ ثبت نام</span>
+            <span className="hidden lg:inline">{cookies.Username?cookies.Username :"ورود/ ثبتنام"}</span>
           </Link>
         </NavbarItem>
         <NavbarItem>
