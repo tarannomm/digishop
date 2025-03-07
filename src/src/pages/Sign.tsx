@@ -222,7 +222,6 @@ const Sign: React.FC = () => {
             variant="flat"
             className="btn mt-12 mb-4 w-full"
             type="submit"
-            isLoading={mutation.isPending}
           >
             {pathname === "/signup" ? "عضویت" : "ورود"}
           </Button>
