@@ -89,3 +89,7 @@ nav header {
 .addressInput{
   @apply !border-1 !border-mid !rounded-lg !bg-white !p-4;
 }
+.swiper-wrapper {
+  align-items: center !important;
+  cursor: pointer;
+}

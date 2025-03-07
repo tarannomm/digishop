@@ -39,23 +39,46 @@ const ShopCart: React.FC = () => {
     },
 
     onSuccess: () => {
-      toast.success("سفارش با موفقیت ثبت شد!");
+      toast.success("سفارش با موفقیت ثبت شد!", {
+        position: "top-right",
+        autoClose: 1200,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
       dispatch(clearCart());
       navigate("/");
     },
 
     onError: (error) => {
       console.log(error);
-      toast.error("مشکلی پیش آمد!");
+      toast.error("مشکلی پیش آمد!", {
+        position: "top-right",
+        autoClose: 1200,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
     },
   });
 
   const handleAddressSubmit = (data) => {
-    setAddress(data); // ذخیره آدرس دریافت‌شده
-    setModal(false); // بستن مدال
-    mutation.mutate(); // ارسال اطلاعات به سرور
+    setAddress(data);
+    setModal(false);
+    mutation.mutate();
   };
-
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }, []);
   return (
     <div className="box p-5 m-5 flex-col lg:flex-row">
       {cartItems.length > 0 ? (
@@ -94,12 +117,12 @@ const ShopCart: React.FC = () => {
                 </Button>
               </div>
             </div>
-            <Link
+            {/* <Link
               to="/shop"
               className="w-full  !text-orangeLight text-center  !text-[12px]   hover:font-bold "
             >
               بازگشت به فروشگاه
-            </Link>
+            </Link> */}
           </div>
         </>
       ) : (
@@ -108,7 +131,7 @@ const ShopCart: React.FC = () => {
             text="سبد خرید شما خالی میباشد !"
             link="/shop"
             animation="shopcart"
-            linkText="هدایت به فروشگاه"
+            linkText="رفتن به فروشگاه"
           />
         </div>
       )}
@@ -121,6 +144,5 @@ const ShopCart: React.FC = () => {
     </div>
   );
 };
-
 
 export default ShopCart;

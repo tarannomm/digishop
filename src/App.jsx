@@ -13,12 +13,16 @@ function App() {
             <Layout>
               <AppRoutes />
               <ToastContainer
-                position="bottom-right"
-                autoClose={5000}
-                hideProgressBar={true}
+                position="top-right"
+                autoClose={1200}
+                hideProgressBar={false}
                 newestOnTop={false}
                 closeOnClick={false}
-                theme="colored"
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"
               />
             </Layout>
           </CookiesProvider>

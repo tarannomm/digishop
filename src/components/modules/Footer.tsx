@@ -33,9 +33,15 @@ const Footer: React.FC = () => {
             <li>
               <Link to="/shop">فروشگاه</Link>
             </li>
-            <li>تماس با ما</li>
-            <li>درباره ما</li>
-            <li>قوانین و مقررات</li>
+            <li>
+              <Link to="/contact">تماس با ما</Link>
+            </li>
+            <li>
+              <Link to="/about-us">درباره ما</Link>
+            </li>
+            <li>
+              <Link to="/rules">قوانین و مقررات</Link>
+            </li>
           </ul>
         </div>
 
@@ -48,7 +54,7 @@ const Footer: React.FC = () => {
         </div>
       </div>
 
-      <div className="mt-10 bg-white shadow-md p-6 rounded-lg flex flex-col items-start md:flex-row justify-around md:items-center">
+      <div className="w-full md:w-[80%] m-auto mt-10 bg-white shadow-md p-6 rounded-lg flex flex-col items-start md:flex-row justify-around md:items-center">
         <div className="flex items-center space-x-2">
           <FaClock className="text-2xl ml-3" />
           <p className="text-sm">ساعت کاری: شنبه تا پنجشنبه: 10 الی 22</p>

@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import React from "react";
+import React, { useEffect } from "react";
 import { OneproductReq } from "../services/requests";
 import { Link, useParams } from "react-router-dom";
 import { Image, MenuItem } from "@heroui/react";
@@ -16,6 +16,12 @@ const ProductDetails: React.FC = () => {
     queryFn: () => (id ? OneproductReq(id) : Promise.reject("No ID provided")),
     enabled: !!id,
   });
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }, []);
   return (
     <>
       {isLoading ? (
@@ -51,12 +57,11 @@ const ProductDetails: React.FC = () => {
                   </div>
                   <div className="flex flex-col md:flex-row items-center md:items-end md:justify-between mt-12 lg:mt-[90px] mb-2 ">
                     <div className="w-[200px]">
-                      {" "}
-                      <AddShop product={data} />{" "}
+                      <AddShop product={data} />
                     </div>
                     <Link
                       to="/shop"
-                      className="w-[200px] h-[20px]  !text-orangeLight text-center md:text-end !text-[12px] pb-6  hover:font-bold mx-3 mt-3"
+                      className="w-[200px] h-[20px] !text-orangeLight text-center md:text-end !text-[12px] pb-6  hover:font-bold mx-3 mt-3"
                     >
                       بازگشت به فروشگاه
                     </Link>
@@ -64,14 +69,14 @@ const ProductDetails: React.FC = () => {
                 </div>
               </div>
             </div>
-            <p className="flex items-center text-orangedark text-sm lg:text-[15px] mt-2 ">
+            <p className="flex items-center text-orangedark text-sm lg:text-[14px] mt-2 ">
               <FaTruck size={20} className="mx-2" />
               ارسال 3-4 روز کاری بعد از ثبت سفارش{" "}
             </p>
           </div>
           <div className="box flex-col p-5 !items-start my-3">
             <h1 className="text-orangedark font-bold">توضیحات محصول :</h1>
-            <p className="text-justify">{data.description}</p>
+            <p className="text-justify text-base/7 text-[15px] mt-4">{data.description}</p>
           </div>
         </div>
       )}

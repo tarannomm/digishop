@@ -9,71 +9,70 @@ import {
   NavbarMenuToggle,
   NavbarMenu,
   NavbarMenuItem,
-  Link,
   Button,
 } from "@heroui/react";
 import { CgProfile } from "react-icons/cg";
 import { FaBagShopping } from "react-icons/fa6";
 import { BsInfoCircleFill } from "react-icons/bs";
+import { Link, useLocation } from "react-router-dom";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const location = useLocation();
+
   const menuItems = [
     {
       name: "خانه",
-      key: "/",
+      path: "/",
       icon: <AiFillHome size={18} className="icon ml-2" />,
     },
     {
       name: "فروشگاه",
-      key: "/shop",
+      path: "/shop",
       icon: <FaBagShopping size={18} className="icon ml-2" />,
     },
     {
       name: "درباره ما",
-      key: "/aboutus",
+      path: "/aboutus",
       icon: <BsInfoCircleFill size={18} className="icon ml-2" />,
     },
   ];
 
   return (
-    <Navbar className="box !justify-between" onMenuOpenChange={setIsMenuOpen}>
+    <Navbar
+      classNames={{
+        wrapper: "max-w-none w-full",
+      }}
+      onMenuOpenChange={setIsMenuOpen}
+    >
       <NavbarContent>
         <NavbarMenuToggle
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
           className="sm:hidden"
         />
-        <NavbarBrand>
-          <img
-            src="/logo.png"
-            className="rounded-full w-14  hidden lg:inline"
-          />
+        <Link to="/" className="flex items-center">
+          <img src="/logo.png" className="rounded-full w-14 hidden lg:inline" />
           <h1 className="text-dark font-bold lg:text-xl px-5"> دیجی شاپ </h1>
-        </NavbarBrand>
+        </Link>
+        <div className="hidden sm:flex gap-4 justify-center">
+          {menuItems.map((item) => (
+            <NavbarItem
+              key={item.path}
+              isActive={location.pathname === item.path}
+            >
+              <Link color="foreground" to={item.path}>
+                {item.name}
+              </Link>
+            </NavbarItem>
+          ))}
+        </div>
       </NavbarContent>
 
-      <NavbarContent className="hidden sm:flex gap-4 " justify="center">
-        <NavbarItem>
-          <Link color="foreground" href="shop">
-            فروشگاه
-          </Link>
-        </NavbarItem>
-        <NavbarItem isActive>
-          <Link aria-current="page" href="/">
-            صفحه اصلی
-          </Link>
-        </NavbarItem>
-        <NavbarItem>
-          <Link color="foreground" href="/">
-            درباره ما
-          </Link>
-        </NavbarItem>
-      </NavbarContent>
       <NavbarContent className="flex gap-4" justify="center">
         <NavbarItem isActive>
           <Link
             className=" mx-5 flex items-center text-orangedark "
-            href="/login"
+            to="/login"
           >
             <CgProfile className="text-[36px] m-1" />
             <span className="hidden lg:inline">ورود/ ثبت نام</span>
@@ -95,8 +94,7 @@ export default function Header() {
                   ? "danger"
                   : "foreground"
               }
-              href={item.key}
-              size="lg"
+              to={item.path}
             >
               {item.icon} {item.name}
             </Link>

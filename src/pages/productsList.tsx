@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import SortBox from "../components/modules/sortBox";
 import ProductCard from "../components/modules/Card";
 import { useQuery } from "@tanstack/react-query";
@@ -16,7 +16,12 @@ const ProductsList: React.FC = () => {
     queryKey: ["product", filter],
     queryFn: () => productsReq(filter),
   });
-
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }, []);
   return (
     <div className="w-full flex flex-col lg:flex-row justify-between">
       <div className="lg:w-[23%] flex lg:flex-col my-2">

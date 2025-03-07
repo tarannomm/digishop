@@ -52,7 +52,7 @@ const ProductCard: React.FC<any> = ({ info }) => {
         <CardBody className="overflow-visible py-2 items-center">
           <p className="font-bold text-darken text-lg">{title}</p>
           <small className="text-orangedark font-bold mt-3">
-            {price.toLocaleString()} تومان
+            {price.toLocaleString()} ریال
           </small>
           <div className="mt-10 mb-2 w-full ">
             <AddShop product={info} />

@@ -1,18 +1,27 @@
-import React from 'react'
-import LottieWrapper from './lottieWrapper'
-import { Link } from 'react-router-dom'
-import { lottieDesignProps } from '../../types/AppTypes'
+import React from "react";
+import LottieWrapper from "./lottieWrapper";
+import { Link, useNavigate } from "react-router-dom";
+import { lottieDesignProps } from "../../types/AppTypes";
+import { Button } from "@heroui/react";
 
-const LottieDesign:React.FC<lottieDesignProps> = ({text,link,animation,linkText}) => {
+const LottieDesign: React.FC<lottieDesignProps> = ({
+  text,
+  link,
+  animation,
+  linkText,
+}) => {
+  const navigate = useNavigate();
   return (
     <div>
-        <div className='w-[40%] min-w-[300px] h-[400px] flex flex-col items-center m-auto my-20'>
-        <h1 className='text-dark font-bold lg:text-lg '>{text}</h1>
-        <LottieWrapper animationType={animation}/>
-        <Link to={link} className="links hover:text-orange-600">{linkText}</Link>
+      <div className="w-[40%] min-w-[300px] h-[520px] flex flex-col items-center m-auto my-20">
+        <h1 className="text-dark font-bold lg:text-lg mb-5">{text}</h1>
+        <LottieWrapper animationType={animation} />
+        <Button color="primary" variant="flat" onPress={() => navigate(link)}>
+          {linkText}
+        </Button>
+      </div>
     </div>
-    </div>
-  )
-}
+  );
+};
 
-export default LottieDesign
+export default LottieDesign;

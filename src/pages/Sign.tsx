@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Input } from "@heroui/react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useForm, SubmitHandler } from "react-hook-form";
@@ -28,18 +28,45 @@ const Sign: React.FC = () => {
       pathname === "/signup" ? createUser(data) : loginUser(data),
     onSuccess: (data) => {
       pathname === "/signup"
-        ? (toast.success("حساب کاربری شما با موفقیت ایجاد شد!"),
+        ? (toast.success("حساب کاربری شما با موفقیت ایجاد شد!", {
+            position: "top-right",
+            autoClose: 1200,
+            hideProgressBar: false,
+            closeOnClick: false,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          }),
           reset(),
           navigate("/login"))
-        : (toast.success("به دیجی شاپ خوش آمدید"),
-          reset(),
-          navigate("/"),
+        : (toast.success("به دیجی شاپ خوش آمدید", {
+            position: "top-right",
+            autoClose: 1200,
+            hideProgressBar: false,
+            closeOnClick: false,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          }),
           setCookie("AuthToken", data.access_token, {
             expires: new Date(Date.now() + 5 * 60 * 60 * 1000),
-          }));
+          })),
+        reset(),
+        navigate("/");
     },
     onError: (error: any) => {
-      toast.error(error.response?.data?.message || "مشکلی پیش آمد!");
+      toast.error(error.response?.data?.message || "مشکلی پیش آمد!", {
+        position: "top-right",
+        autoClose: 1200,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
     },
   });
 
@@ -47,18 +74,36 @@ const Sign: React.FC = () => {
     mutation.mutate(data);
   };
 
-  const LoginInputs = [
+  const LoginInputs: {
+    id: number;
+    title: string;
+    name: string;
+    type: string;
+  }[] = [
     { id: 1, title: "نام کاربری", name: "username", type: "text" },
     { id: 2, title: "رمز عبور", name: "password", type: "password" },
   ];
 
-  const SignupInputs = [
+  const SignupInputs: {
+    id: number;
+    title: string;
+    name: string;
+    type: string;
+  }[] = [
     { id: 1, title: "نام", name: "firstName", type: "text" },
     { id: 2, title: "نام خانوادگی", name: "lastName", type: "text" },
     { id: 3, title: "شماره موبایل", name: "phoneNumber", type: "number" },
     { id: 4, title: "نام کاربری", name: "username", type: "text" },
     { id: 5, title: "رمز عبور", name: "password", type: "password" },
   ];
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }, []);
+
   return (
     <div className="flex flex-col mt-14 items-center justify-center">
       <div className="formContainer w-[32%] min-w-[300px]">
